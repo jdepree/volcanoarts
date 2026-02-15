@@ -24,7 +24,9 @@ jobs:
           publish_dir: .
           destination_dir: pr-${{ github.event.pull_request.number }}
           keep_files: true
-          exclude_assets: '.github,node_modules,.git,.gitattributes,.gitignore'
+          exclude_assets: >-
+            .github, node_modules, .git, .gitattributes, .gitignore,
+            package.json, package-lock.json
           
       - name: Comment PR with preview URL
         uses: actions/github-script@v7
@@ -85,9 +87,14 @@ jobs:
           
       - name: Remove PR preview directory
         run: |
-          rm -rf pr-${{ github.event.pull_request.number }}
-          git config user.name github-actions[bot]
-          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add .
-          git commit -m "Remove preview for PR #${{ github.event.pull_request.number }}" || echo "No changes to commit"
-          git push
+          PR_DIR="pr-${{ github.event.pull_request.number }}"
+          if [ -d "$PR_DIR" ]; then
+            rm -rf "$PR_DIR"
+            git config user.name github-actions[bot]
+            git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+            git add .
+            git commit -m "Remove preview for PR #${{ github.event.pull_request.number }}"
+            git push
+          else
+            echo "Preview directory $PR_DIR does not exist, nothing to clean up"
+          fi
