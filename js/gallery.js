@@ -133,6 +133,17 @@ const artworks = [
         dimensions: '65cm x 85cm',
         medium: 'Oil on canvas',
         image: 'images/artwork-012.jpg'
+    },
+    {
+        id: 'art-013',
+        title: 'Gorilla Chessboard',
+        artist: 'Emmanuel Nkurunziza',
+        category: 'handicraft',
+        price: 175,
+        description: 'A beautifully handcrafted chessboard featuring carved gorilla figurines as chess pieces. This unique piece celebrates Rwanda\'s iconic mountain gorillas and traditional woodworking craftsmanship. Each piece is intricately carved and the board features inlaid wood patterns.',
+        dimensions: '45cm x 45cm',
+        medium: 'Carved wood with inlay',
+        image: 'images/artwork-013.jpg'
     }
 ];
 
