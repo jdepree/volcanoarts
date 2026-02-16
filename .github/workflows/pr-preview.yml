@@ -1,7 +1,7 @@
 name: Deploy PR Preview
 
 on:
-  pull_request:
+  pull_request_target:
     types: [opened, synchronize, reopened, closed]
 
 permissions:
@@ -11,11 +11,13 @@ permissions:
 jobs:
   deploy-preview:
     runs-on: ubuntu-latest
-    if: github.event.action != 'closed'
+    if: github.event.action != 'closed' && github.event.pull_request.head.repo.full_name == github.repository
     
     steps:
       - name: Checkout PR branch
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
         
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
