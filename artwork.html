@@ -138,8 +138,8 @@
             // Render artwork detail
             const detailContainer = document.getElementById('artwork-detail');
             detailContainer.innerHTML = `
-                <div class="artwork-detail__image" style="background: linear-gradient(135deg, #D2691E20, #8B451320); height: 500px; display: flex; align-items: center; justify-content: center; border-radius: 16px;">
-                    <span style="color: #8B4513; font-size: 6rem;">🎨</span>
+                <div class="artwork-detail__image">
+                    <img src="${artwork.image}" alt="${artwork.title}" style="width: 100%; height: auto; border-radius: 16px;">
                 </div>
                 <div class="artwork-detail__info">
                     <h1>${artwork.title}</h1>
@@ -176,9 +176,7 @@
 
             relatedContainer.innerHTML = related.map(art => `
                 <article class="card">
-                    <div class="card__image" style="background: linear-gradient(135deg, #D2691E20, #8B451320); display: flex; align-items: center; justify-content: center;">
-                        <span style="color: #8B4513; font-size: 3rem;">🎨</span>
-                    </div>
+                    <img src="${art.image}" alt="${art.title}" class="card__image">
                     <div class="card__content">
                         <h3 class="card__title">${art.title}</h3>
                         <p class="card__artist">by ${art.artist}</p>
