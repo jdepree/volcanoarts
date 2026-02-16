@@ -163,9 +163,7 @@ function renderGallery(items) {
     gallery.innerHTML = items.map(artwork => `
         <article class="card" data-category="${artwork.category}">
             <div class="card__image-wrapper">
-                <div class="card__image" style="background: linear-gradient(135deg, #D2691E20, #8B451320); display: flex; align-items: center; justify-content: center;">
-                    <span style="color: #8B4513; font-size: 3rem;">🎨</span>
-                </div>
+                <img src="${artwork.image}" alt="${artwork.title}" class="card__image">
             </div>
             <div class="card__content">
                 <h3 class="card__title">${artwork.title}</h3>
